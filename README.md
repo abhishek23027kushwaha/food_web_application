@@ -170,24 +170,8 @@ sequenceDiagram
 
 </div>
 
----
 
-## 🎭 Role-Based Access Control
 
-The platform enforces strict role-based authorization via JWT cookies and role validation middlewares:
-
-<div align="center">
-
-| Feature | 👤 User (Customer) | 🍳 Restaurant Owner | 🛵 Delivery Partner |
-| :--- | :---: | :---: | :---: |
-| Browse Shops & Food Items | ✅ | ✅ | ✅ |
-| Add to Cart & Checkout | ✅ | ❌ | ❌ |
-| Create & Manage Shop Profile | ❌ | ✅ | ❌ |
-| Add / Modify Food Menu Items | ❌ | ✅ | ❌ |
-| Manage Incoming Orders | ❌ | ✅ | ❌ |
-| Accept Delivery Assignments | ❌ | ❌ | ✅ |
-| Broadcast GPS Location | ❌ | ❌ | ✅ |
-| Verify Delivery Handover OTP | ❌ | ❌ | ✅ |
 
 </div>
 
