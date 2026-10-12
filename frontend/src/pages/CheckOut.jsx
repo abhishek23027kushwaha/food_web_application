@@ -133,7 +133,7 @@ const openRazorpayWindow=(orderId,razorOrder)=>{
  key:import.meta.env.VITE_RAZORPAY_KEY_ID,
  amount:razorOrder.amount,
  currency:'INR',
- name:"Vingo",
+ name:"Yumzo",
  description:"Food Delivery Website",
  order_id:razorOrder.id,
  handler:async function (response) {

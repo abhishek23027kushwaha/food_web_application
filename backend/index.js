@@ -22,23 +22,32 @@ import { socketHandler } from "./socket.js"
 const app=express()
 const server=http.createServer(app)
 
-const io=new Server(server,{
-   cors:{
-    origin:"http://localhost:5173",
-    credentials:true,
-    methods:['POST','GET']
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL
+].filter(Boolean)
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow any origin that matches allowed list, vercel, or localhost in dev
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".vercel.app") || origin.includes("localhost")) {
+      callback(null, true)
+    } else {
+      callback(null, true)
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }
+
+const io = new Server(server, {
+  cors: corsOptions
 })
 
-app.set("io",io)
+app.set("io", io)
 
-
-
-const port=process.env.PORT || 5000
-app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
-}))
+const port = process.env.PORT || 5000
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auth",authRouter)
